@@ -48,6 +48,7 @@ class SinglyLinkedList:
             node.next = node.next.next
 
     def __repr__(self):
+        print(self.head)
         if self.head is None:
             return 'empty'
         temp = self.head
