@@ -2,10 +2,11 @@ from data_structures.linked_list import SinglyLinkedList
 
 
 def dfs(adj, s):
-    level = {s.key: 0}
-    parent = {s.key: None}
+    level = {s: 0}
+    parent = {s: None}
     frontier = [s]
     while frontier:
+        print('a')
         _next = []
         for u in frontier:
             for v in adj[u]:
@@ -37,9 +38,32 @@ if __name__ == "__main__":
         SinglyLinkedList(),
         SinglyLinkedList()
     ]
-    adj[0].push(adj[1]).push(adj[2])
-    adj[1].push(adj[0])
-    adj[2].push(adj[0]).push(adj[3])
-    adj[3].push(adj[2]).push(adj[4]).push(adj[5])
-    adj[4].push(adj[3]).push(adj[5]).push(adj[6])
-    adj[5].push(adj[3]).push(adj[5]).push(adj[6])
+
+    adj[0].push(Node(adj[1]))
+    adj[0].push(Node(adj[2]))
+
+    adj[1].push(Node(adj[0]))
+
+    adj[2].push(Node(adj[0]))
+    adj[2].push(Node(adj[3]))
+
+    adj[3].push(Node(adj[2]))
+    adj[3].push(Node(adj[4]))
+    adj[3].push(Node(adj[5]))
+
+    adj[4].push(Node(adj[3]))
+    adj[4].push(Node(adj[5]))
+    adj[4].push(Node(adj[6]))
+
+    adj[5].push(Node(adj[3]))
+    adj[5].push(Node(adj[4]))
+    adj[5].push(Node(adj[7]))
+
+    adj[6].push(Node(adj[4]))
+    adj[6].push(Node(adj[5]))
+    adj[6].push(Node(adj[7]))
+
+    adj[7].push(Node(adj[5]))
+    adj[7].push(Node(adj[6]))
+
+    dfs(adj, adj[2])

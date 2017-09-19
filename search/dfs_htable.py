@@ -1,19 +1,22 @@
-def dfs(adj, s):
-    level = {s: 0}
-    parent = {s: None}
-    frontier = [s]
-    while frontier:
-        _next = []
-        for u in frontier:
-            for v in adj[u]:
-                if v not in level:
-                    level[v] = level[u] + 1
-                    parent[v] = u
-                    _next.append(v)
-            frontier = _next
-    return level
+parent = {"s": None}
+
+
+def dfs_visit(adj, par):
+    for v in adj[par]:
+        if v not in parent:
+            parent[v] = par
+            dfs_visit(adj, v)
+
+
+# def dfs(adj, V):
+#     parent = {}
+#     for s in V:
+#         if s not in parent:
+#             dfs_visit(adj, s, parent)
+#     print(parent, 'a')
 
 if __name__ == '__main__':
+    V = ["s", "a", "z", "x", "d", "c", "f", "v"]
     adj = {
         "s": ["a", "x"],
         "a": ["z", "s"],
@@ -25,4 +28,5 @@ if __name__ == '__main__':
         "v": ["c", "f"]
     }
 
-    print(dfs(adj, "s"))
+    dfs_visit(adj, "s")
+    print(parent)
