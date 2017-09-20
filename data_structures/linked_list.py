@@ -29,6 +29,10 @@ class SinglyLinkedList:
             current = current.next
         return -1
 
+    #TRIAL NOT TESTED!!
+    def getHead(self):
+        return self.head
+
     def remove(self, node):
         if not isinstance(node, Node):
             raise KeyError('that hash key does not exist')
