@@ -14,7 +14,7 @@ def quick_sort(arr, l, r):
 def partition(arr, l, r):
     i = l - 1
     for j in range(l, r):
-        if arr[j] < arr[r]:
+        if arr[j] <= arr[r]:
             i += 1
             arr[i], arr[j] = arr[j], arr[i]
     arr[r], arr[i + 1] = arr[i + 1], arr[r]
