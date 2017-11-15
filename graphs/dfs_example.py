@@ -43,13 +43,4 @@ def dfs_paths(graph, start, goal):
     return paths
 
 
-def dfs_recursive(graph, curr, visited=set()):
-    if curr not in visited:
-        visited.add(curr)
-        for n in graph[curr]:
-            dfs_recursive(graph, n, visited)
-    return visited
-
-
-
 dfs_recursive(graph, 'A')
