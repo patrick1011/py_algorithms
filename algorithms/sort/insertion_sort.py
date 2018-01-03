@@ -6,12 +6,10 @@
 
 def insertion_sort(arr):
     for i in range(1, len(arr)):
-        curr = arr[i]
-        j = i - 1
-        while j >= 0 and arr[j] > curr:
-            arr[j + 1] = arr[j]
+        j = i
+        while j and arr[j-1] > arr[j]:
+            arr[j-1], arr[j] = arr[j], arr[j-1]
             j -= 1
-        arr[j + 1] = curr
 
 if __name__ == "__main__":
     example_input = [5, 1, 4, 2, 8, 7, 5, 2, 3, 4, 5, 6, 6]
