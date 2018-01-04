@@ -89,34 +89,61 @@ r.right = rr
 
 def maxPathSum(n):
 
-	max_paths = {}
+	max_path = 0
 
 	def recursive_child_paths(n):
 		mlp = n.val + (recursive_child_paths(n.left) if n.left else 0)
 		mrp = n.val + (recursive_child_paths(n.right) if n.right else 0)
+		mpp = 0
+		if n.left and n.right:
+			mpp = n.val + recursive_child_paths(n.left) + recursive_child_paths(n.right)
 
-		max_paths[n] = [mlp, mrp, None]
+		nonlocal max_path
+		max_path = max(max_path, mpp, mlp, mrp)
 
 		return max(0, mlp, mrp)
 
-	def recursive_parent_paths(n, parent_val):
-		max_paths[n][2] = n.val + parent_val
-
-		if n.left:
-			recursive_parent_paths(n.left, max(max_paths[n][2], max_paths[n][1]))
-		if n.right:
-			recursive_parent_paths(n.right, max(max_paths[n][2], max_paths[n][0]))
-
 
 	recursive_child_paths(n)
-	recursive_parent_paths(n, 0)
 
-	_max_arr = max([max(max_paths[c]) for c in max_paths])
 
-	return _max_arr
+	return max_path
 
 
 print(maxPathSum(t))
+
+
+
+# def maxPathSum(n):
+
+# 	max_paths = {}
+
+# 	def recursive_child_paths(n):
+# 		mlp = n.val + (recursive_child_paths(n.left) if n.left else 0)
+# 		mrp = n.val + (recursive_child_paths(n.right) if n.right else 0)
+
+# 		max_paths[n] = [mlp, mrp, None]
+
+# 		return max(0, mlp, mrp)
+
+# 	def recursive_parent_paths(n, parent_val):
+# 		max_paths[n][2] = n.val + parent_val
+
+# 		if n.left:
+# 			recursive_parent_paths(n.left, max(max_paths[n][2], max_paths[n][1]))
+# 		if n.right:
+# 			recursive_parent_paths(n.right, max(max_paths[n][2], max_paths[n][0]))
+
+
+# 	recursive_child_paths(n)
+# 	recursive_parent_paths(n, 0)
+
+# 	_max_arr = max([max(max_paths[c]) for c in max_paths])
+
+# 	return _max_arr
+
+
+# print(maxPathSum(t))
 
 
 
