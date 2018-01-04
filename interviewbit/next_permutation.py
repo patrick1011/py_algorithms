@@ -50,16 +50,12 @@ def next_permutaiton(a):
 				if a[i-1] < a[j] < a[nli]:
 					nli = j
 			a[nli], a[i-1] = a[i-1], a[nli]
-			print(a, a[:i], a[i:], a[i::])
 			a = a[:i] + list(reversed(a[i:]))
 			return a
 	a.reverse()
 	return a
 
 
-
-	# a.reverse()
-	return a
 arr = [319, 695, 52]
 # test = list(arr)
 print(next_permutaiton(arr))
