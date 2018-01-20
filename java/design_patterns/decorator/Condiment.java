@@ -1,3 +1,3 @@
 public class Condiment extends Beverage {
-	public abstract void cost();
+	public abstract String getDescription();
 }

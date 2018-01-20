@@ -1,5 +1,5 @@
 public abstract class Beverage {
-	String description = 'Unknown Beverage';
+	String description = "Unknown Beverage";
 
 	public abstract double cost();
 
