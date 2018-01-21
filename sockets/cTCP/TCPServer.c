@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 
 int main() {
-	char server_message[256] = "You have reached the server!";
+	char server_message[90480] = "You have reached the server!";
 
 	// create the server socket
 	int server_socket;

@@ -9,8 +9,8 @@
 int main() {
 
 	// create a socket
-	int network_socket;
-	network_socket = socket(AF_INET, SOCK_STREAM, 0);
+	int client_socket;
+	client_socket = socket(AF_INET, SOCK_STREAM, 0);
 
 	// specify an address for the socket
 	struct sockaddr_in server_address;
@@ -18,7 +18,7 @@ int main() {
 	server_address.sin_port = htons(9002);
 	server_address.sin_addr.s_addr = INADDR_ANY;
 
-	int connection_status = connect(network_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+	int connection_status = connect(client_socket, (struct sockaddr *) &server_address, sizeof(server_address));
 
 	if (connection_status == -1) {
 		printf("There was an error making a connection to the remote socket \n\n");
@@ -27,13 +27,13 @@ int main() {
 
 	// receive some data from the server
 	char server_response[256];
-	recv(network_socket, &server_response, sizeof(server_response), 0);
+	recv(client_socket, &server_response, sizeof(server_response), 0);
 
 	// print out the server's response
 	printf("The server sent the data: %s", server_response);
 
 	// then close the socket
-	// close(network_socket);
+	close(client_socket);
 
 	return 0;
 }
